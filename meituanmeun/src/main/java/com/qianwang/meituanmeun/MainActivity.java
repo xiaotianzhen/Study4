@@ -17,6 +17,7 @@ import com.qianwang.meituanmeun.bean.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.qianwang.meituanmeun.R.id.cancel_action;
 import static com.qianwang.meituanmeun.R.id.mViewpager;
 
 public class MainActivity extends AppCompatActivity {
@@ -87,12 +88,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                ll_point.getChildAt(0).findViewById(R.id.v_dot).setBackgroundResource(R.drawable.dot_selected);
-
             }
 
             @Override
             public void onPageSelected(int position) {
+
+                for (int i = 0; i < page; i++) {
+                    if(i==position){
+                        ll_point.getChildAt(i).findViewById(R.id.v_dot).setBackgroundResource(R.drawable.dot_selected);
+                    }else {
+                        ll_point.getChildAt(i).findViewById(R.id.v_dot).setBackgroundResource(R.drawable.dot_normal);
+                    }
+                }
+
 
             }
 
