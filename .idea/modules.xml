@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/darkthem/darkthem.iml" filepath="$PROJECT_DIR$/darkthem/darkthem.iml" />
       <module fileurl="file://$PROJECT_DIR$/meituanmeun/meituanmeun.iml" filepath="$PROJECT_DIR$/meituanmeun/meituanmeun.iml" />
       <module fileurl="file://$PROJECT_DIR$/nightmodel/nightmodel.iml" filepath="$PROJECT_DIR$/nightmodel/nightmodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parallax_viewpager/parallax_viewpager.iml" filepath="$PROJECT_DIR$/parallax_viewpager/parallax_viewpager.iml" />
     </modules>
   </component>
 </project>

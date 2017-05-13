@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/darkthem" />
             <option value="$PROJECT_DIR$/meituanmeun" />
             <option value="$PROJECT_DIR$/nightmodel" />
+            <option value="$PROJECT_DIR$/parallax_viewpager" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
