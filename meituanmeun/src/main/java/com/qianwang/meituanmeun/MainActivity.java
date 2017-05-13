@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.qianwang.meituanmeun.adapter.GridViewAdapter;
 import com.qianwang.meituanmeun.adapter.ViewpagerAdapter;
@@ -28,10 +29,14 @@ public class MainActivity extends AppCompatActivity {
     private int pageSize = 10;
     private Menu menu;
     private List<View> mViews = new ArrayList<View>();
+    private LinearLayout ll_point;
+    private int page = 0;
 
 
     private void initView() {
         mViewPager = (ViewPager) findViewById(mViewpager);
+        ll_point = (LinearLayout) findViewById(R.id.llayout_point);
+
     }
 
     private void initData() {
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
         initData();
-        int page = 0;
+
         if (menuNames.length % pageSize == 0) {
             page = menuNames.length / pageSize;
         } else {
@@ -66,5 +71,35 @@ public class MainActivity extends AppCompatActivity {
             mViews.add(gridView);
         }
         mViewPager.setAdapter(new ViewpagerAdapter(mViews));
+        setPoint();
+    }
+
+
+    public void setPoint() {
+
+        for (int i = 0; i < page; i++) {
+            ll_point.addView(LayoutInflater.from(this).inflate(R.layout.item_point,null));
+        }
+
+        //设置默认在第一页
+        ll_point.getChildAt(0).findViewById(R.id.v_dot).setBackgroundResource(R.drawable.dot_selected);
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                ll_point.getChildAt(0).findViewById(R.id.v_dot).setBackgroundResource(R.drawable.dot_selected);
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }
