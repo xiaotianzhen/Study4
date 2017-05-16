@@ -1,1 +1,1 @@
-include ':app', ':darkthem', ':nightmodel', ':meituanmeun', ':parallax_viewpager'
+include ':app', ':darkthem', ':nightmodel', ':meituanmeun', ':parallax_viewpager', ':slideitemdelete'
