@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/citylistmenu" />
             <option value="$PROJECT_DIR$/darkthem" />
             <option value="$PROJECT_DIR$/meituanmeun" />
             <option value="$PROJECT_DIR$/nightmodel" />
