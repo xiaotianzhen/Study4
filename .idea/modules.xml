@@ -8,7 +8,10 @@
       <module fileurl="file://$PROJECT_DIR$/meituanmeun/meituanmeun.iml" filepath="$PROJECT_DIR$/meituanmeun/meituanmeun.iml" />
       <module fileurl="file://$PROJECT_DIR$/nightmodel/nightmodel.iml" filepath="$PROJECT_DIR$/nightmodel/nightmodel.iml" />
       <module fileurl="file://$PROJECT_DIR$/parallax_viewpager/parallax_viewpager.iml" filepath="$PROJECT_DIR$/parallax_viewpager/parallax_viewpager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parallax_viewpager/parallax_viewpager.iml" filepath="$PROJECT_DIR$/parallax_viewpager/parallax_viewpager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/selectdeletedemo/selectdeletedemo.iml" filepath="$PROJECT_DIR$/selectdeletedemo/selectdeletedemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/slideitemdelete/slideitemdelete.iml" filepath="$PROJECT_DIR$/slideitemdelete/slideitemdelete.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stereoview/stereoview.iml" filepath="$PROJECT_DIR$/stereoview/stereoview.iml" />
     </modules>
   </component>
 </project>

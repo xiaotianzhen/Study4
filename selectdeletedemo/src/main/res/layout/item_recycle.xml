@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
+
+    <RelativeLayout
+        android:id="@+id/rl_itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/im_item"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/im_item"
+            android:text="音乐"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_stitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/im_item"
+            android:text="music"
+            android:textSize="14dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_delete"
+        android:layout_toLeftOf="@id/rl_itemLayout"
+        android:background="@color/colorPrimary"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

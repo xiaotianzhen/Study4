@@ -9,9 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.qianwang.slideitemdelete.R;
-
 import java.util.List;
 
 /**
@@ -55,11 +53,14 @@ public class RecyclerViewAdapter  extends  RecyclerView.Adapter<RecyclerViewAdap
     }
 
     public void removeRecycle(int position){
-        mList.remove(position);
-        notifyDataSetChanged();
-        if(mList.size()==0){
+        if(mList.size()>position){
 
-            Toast.makeText(mContext,"已经没有数据可以删除了",Toast.LENGTH_SHORT).show();
+            mList.remove(position);
+            notifyDataSetChanged();
+            if(mList.size()==0){
+
+                Toast.makeText(mContext,"已经没有数据可以删除了",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

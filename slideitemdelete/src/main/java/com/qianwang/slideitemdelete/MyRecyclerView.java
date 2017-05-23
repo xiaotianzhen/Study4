@@ -95,28 +95,24 @@ public class MyRecyclerView extends RecyclerView {
                 //通过position得到item的viewHolder
                 if (mFirstPosition >= 0) {
                     itemView = getChildAt(pos - mFirstPosition);
-                    RecyclerViewAdapter.MyViewHodler viewHolder = (RecyclerViewAdapter.MyViewHodler) getChildViewHolder(itemView);
-                    itemLayout = viewHolder.ll_itemLayout;
-                    textView = (TextView) itemLayout.findViewById(R.id.tv_delete_item);
-                    imageView = (ImageView) itemLayout.findViewById(R.id.im_delete_item);
-                }
-
-                if (position != pos) {
-
-                    position = pos;
-                    if (itemView != null) {
-
+                    if(itemView!=null){
+                        RecyclerViewAdapter.MyViewHodler viewHolder = (RecyclerViewAdapter.MyViewHodler) getChildViewHolder(itemView);
+                        itemLayout = viewHolder.ll_itemLayout;
+                        textView = (TextView) itemLayout.findViewById(R.id.tv_delete_item);
+                        imageView = (ImageView) itemLayout.findViewById(R.id.im_delete_item);
                     }
                 }
+
                 break;
 
-            case MotionEvent.ACTION_MOVE: {
+            case MotionEvent.ACTION_MOVE:
                 xMove = x;
                 yMove = y;
                 int dx = xMove - xDown;
                 int dy = yMove - yDown;
 
                 if (Math.abs(dy) < mTouchSlop * 2 && Math.abs(dx) > mTouchSlop) {
+
                     int scrollX = itemLayout.getScrollX();
                     int newScrollX = mStartX - x;
                     if (newScrollX < 0 && scrollX <= 0) {
@@ -137,15 +133,16 @@ public class MyRecyclerView extends RecyclerView {
                     }
                     itemLayout.scrollBy(newScrollX, 0);
                 }
-            }
-            break;
-            case MotionEvent.ACTION_UP: {
+
+                break;
+            case MotionEvent.ACTION_UP:
                 int scrollX = itemLayout.getScrollX();
                 if (scrollX > maxLength / 2) {
                     textView.setVisibility(GONE);
                     imageView.setVisibility(VISIBLE);
                     //此处可以进行直接删除，或者让用户点击进行删除
-                    mScroller.startScroll(scrollX, 0, maxLength - scrollX, 0);
+                   // mScroller.startScroll(scrollX, 0, maxLength - scrollX, 0);
+                    ((RecyclerViewAdapter)getAdapter()).removeRecycle(pos);
                 } else {
 
                     textView.setVisibility(VISIBLE);
@@ -154,11 +151,10 @@ public class MyRecyclerView extends RecyclerView {
                     invalidate();
                 }
                 isFirst = true;
-            }
-            break;
+
+                break;
         }
         mStartX = x;
-
         //注意当我们不主动消耗事件，交给系统去分发接下来的事件
         return super.onTouchEvent(event);
     }
