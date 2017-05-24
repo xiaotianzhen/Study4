@@ -26,14 +26,15 @@
 
         <com.qianwang.citylistmenu.custom.MySlideView
             android:id="@+id/slideView"
-            android:layout_alignParentRight="true"
             android:layout_width="20dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"/>
+
 
         <FrameLayout
-            android:layout_toLeftOf="@id/slideView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/slideView">
 
 
             <android.support.v7.widget.RecyclerView
@@ -42,7 +43,23 @@
                 android:layout_height="match_parent">
             </android.support.v7.widget.RecyclerView>
 
+            <TextView
+                android:layout_above="@id/recyclerView"
+                android:layout_toLeftOf="@id/slideView"
+                android:id="@+id/tv_header"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorAccent"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="A"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+
         </FrameLayout>
+
+
+
         <com.qianwang.citylistmenu.custom.CircleTextView
             android:id="@+id/my_circle_view"
             android:layout_width="50dp"
@@ -51,6 +68,6 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="25dp"
-            android:visibility="gone" />
+            android:visibility="gone"/>
     </RelativeLayout>
 </LinearLayout>

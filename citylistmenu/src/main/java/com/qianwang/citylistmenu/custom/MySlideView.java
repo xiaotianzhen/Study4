@@ -26,7 +26,7 @@ public class MySlideView extends View {
     private int mHeight;
     private int defHeight = 600;
     private int defWidth = 100;
-    private int mTextHeight;
+    private int mTextHeight=20;
     private int downY;
     private int moveY;
     private boolean isSlide = false;

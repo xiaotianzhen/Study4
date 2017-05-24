@@ -51,6 +51,7 @@ public class City {
     }
 
     public String getFirstPinYin() {
+        firstPinYin = cityPinYin.substring(0, 1);
         return firstPinYin;
     }
 
