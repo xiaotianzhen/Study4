@@ -51,31 +51,26 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
-                View stickInfoView = recyclerView.findChildViewUnder(tv_header.getMeasuredWidth() / 2, 5);
+                //找到第一个子view,然后显示文本
+                View stickInfoView = recyclerView.findChildViewUnder(tv_header.getMeasuredWidth() / 2, 5);  //通过坐标找子view
                 if (stickInfoView != null && stickInfoView.getContentDescription() != null) {
                     tv_header.setText(stickInfoView.getContentDescription().toString());
                 }
-
+                //获取header的下一个item，判断是否需要改变header
                 View transInfoView = recyclerView.findChildViewUnder(tv_header.getMeasuredWidth() / 2, tv_header.getMeasuredHeight() + 1);
                 if (transInfoView != null && transInfoView.getTag() != null) {
-                    Log.i("520it", "transInfoView.getTag()" + "***********************************"+transInfoView.getTag());
                     int state = (int) transInfoView.getTag();
                     int dealty = transInfoView.getTop() - tv_header.getMeasuredHeight();
                     if (state == MyAdapter.HAS_STICKY_VIEW) {
-                        if(transInfoView.getTop()>0){
-                           tv_header.setTranslationY(dealty);
-                        }else {
+                        if (transInfoView.getTop() > 0) {
+                            tv_header.setTranslationY(dealty);
+                        } else {
                             tv_header.setTranslationY(0);
                         }
-
-                    } else if (state==MyAdapter.NONE_STICKY_VIEW) {
+                    } else if (state == MyAdapter.NONE_STICKY_VIEW) {
                         tv_header.setTranslationY(0);
                     }
-
                 }
-
-
             }
         });
     }
@@ -87,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
         slideView = (MySlideView) findViewById(R.id.slideView);
         tv_header = (TextView) findViewById(R.id.tv_header);
         slideView.setListener(this);
-
         mCityList.clear();
         firstPinYin.clear();
         for (int i = 0; i < City.stringCitys.length; i++) {
@@ -97,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
             city.setCityPinYin(transformPinYin(cityStr));
             mCityList.add(city);
         }
-
         Collections.sort(mCityList, new Comparator<City>() {
             @Override
             public int compare(City cityFirst, City citySecond) {
@@ -110,13 +103,16 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
         //去除重复
         for (String string : pinyinList) {
             firstPinYin.add(string);
-
         }
-        Log.i("520it", "firstPinYin" + "***********************************" + firstPinYin);
     }
 
-    public String transformPinYin(String str) {
+    /**
+     * 获取汉子的拼音
+     * @param str
+     * @return
+     */
 
+    public String transformPinYin(String str) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < str.length(); i++) {
             sb.append(Pinyin.toPinyin(str.charAt(i)));
@@ -124,6 +120,13 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
         return sb.toString();
     }
 
+    /**
+     *
+     * Recyclerview提供的接口方法
+     *
+     * @param str 显示的当前位置
+     * @param dismiss 是否显示隐藏的textview
+     */
     @Override
     public void showText(String str, boolean dismiss) {
         if (dismiss) {
@@ -143,18 +146,28 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
         scrollPosition(selectPosition);
     }
 
-    private void scrollPosition(int index) {
+    /**
+     * 先传入要置顶第几项，然后区分情况处理
+     * @param index
+     */
 
+    private void scrollPosition(int index) {
+        //先从RecyclerView的LayoutManager中获取第一项和最后一项的Position
         int firsrPositon = mLayoutManager.findFirstVisibleItemPosition();
         int lastPosition = mLayoutManager.findLastVisibleItemPosition();
 
         if (index <= firsrPositon) {
+            //当要置顶的项在当前显示的第一个项的前面时
             recyclerView.scrollToPosition(index);
         } else if (index <= lastPosition) {
+            //当要置顶的项已经在屏幕上显示时
             int top = recyclerView.getChildAt(index - firsrPositon).getTop();
             recyclerView.scrollBy(0, top);
         } else {
+            //当要置顶的项在当前显示的最后一项的后面时
             recyclerView.scrollToPosition(index);
+            //这里这个变量是用在RecyclerView滚动监听里面的
+            //move = true;
         }
     }
 }

@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -26,7 +25,7 @@ public class MySlideView extends View {
     private int mHeight;
     private int defHeight = 600;
     private int defWidth = 100;
-    private int mTextHeight=20;
+    private int mTextHeight = 20;
     private int downY;
     private int moveY;
     private boolean isSlide = false;
@@ -149,10 +148,10 @@ public class MySlideView extends View {
         mPaint.setColor(backgroupColor);
         canvas.drawRect(0, 0, (float) mWidth, mHeight, mPaint);
         for (int i = 0; i < MainActivity.firstPinYin.size(); i++) {
-            String textView =  MainActivity.firstPinYin.get(i);
+            String textView = MainActivity.firstPinYin.get(i);
             if (i == position - 1) {
                 mPaint.setColor(getResources().getColor(R.color.colorAccent));
-                selectTxt =  MainActivity.firstPinYin.get(i);
+                selectTxt = MainActivity.firstPinYin.get(i);
                 mListener.showText(selectTxt, false);
             } else {
                 mPaint.setColor(getResources().getColor(R.color.white));
@@ -160,7 +159,7 @@ public class MySlideView extends View {
             mPaint.setTextSize(40);
             mPaint.getTextBounds(textView, 0, textView.length(), mBound);
             canvas.drawText(textView, (mWidth - mBound.width()) * 1 / 2, mTextHeight - mBound.height(), mPaint);
-            mTextHeight += mHeight /  MainActivity.firstPinYin.size();
+            mTextHeight += mHeight / MainActivity.firstPinYin.size();
 
         }
     }
