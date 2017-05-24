@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.promeg.pinyinhelper.Pinyin;
 import com.qianwang.citylistmenu.adapter.MyAdapter;
@@ -20,7 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements MySlideView.onTouchListener {
+public class MainActivity extends AppCompatActivity implements MySlideView.onTouchListener, MyAdapter.OnItemOnClickListener {
 
     private List<City> mCityList = new ArrayList<City>();
     private Set<String> pinyinList = new LinkedHashSet<>();
@@ -31,16 +32,18 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
     private LinearLayoutManager mLayoutManager;
     private City city;
     private TextView tv_header;
+    private MyAdapter mMyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-
-        recyclerView.setAdapter(new MyAdapter(this, mCityList));
+        mMyAdapter = new MyAdapter(this, mCityList);
+        recyclerView.setAdapter(mMyAdapter);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
+        mMyAdapter.setItemOnClickListener(this);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -108,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
 
     /**
      * 获取汉子的拼音
+     *
      * @param str
      * @return
      */
@@ -121,10 +125,9 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
     }
 
     /**
-     *
      * Recyclerview提供的接口方法
      *
-     * @param str 显示的当前位置
+     * @param str     显示的当前位置
      * @param dismiss 是否显示隐藏的textview
      */
     @Override
@@ -142,12 +145,12 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
                 break;
             }
         }
-
         scrollPosition(selectPosition);
     }
 
     /**
      * 先传入要置顶第几项，然后区分情况处理
+     *
      * @param index
      */
 
@@ -169,5 +172,10 @@ public class MainActivity extends AppCompatActivity implements MySlideView.onTou
             //这里这个变量是用在RecyclerView滚动监听里面的
             //move = true;
         }
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        Toast.makeText(getApplicationContext(), mCityList.get(position).getCityName(), Toast.LENGTH_SHORT).show();
     }
 }

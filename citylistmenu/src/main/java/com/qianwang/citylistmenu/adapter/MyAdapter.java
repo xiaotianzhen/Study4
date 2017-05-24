@@ -2,6 +2,7 @@ package com.qianwang.citylistmenu.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public static final int NONE_STICKY_VIEW = 3;
     private Context mContext;
     private List<City> mList = new ArrayList<City>();
+    private OnItemOnClickListener mItemOnClickListener;
+
+    public void setItemOnClickListener(OnItemOnClickListener itemOnClickListener) {
+        mItemOnClickListener = itemOnClickListener;
+    }
 
     public MyAdapter(Context context, List<City> list) {
         mContext = context;
@@ -63,7 +69,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return mList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
         private TextView tv_pinyin;
         private TextView tv_city;
         private LinearLayout item_ll;
@@ -74,7 +80,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             tv_city = (TextView) itemView.findViewById(R.id.tv_city);
             tv_pinyin = (TextView) itemView.findViewById(R.id.tv_pinyin);
             item_ll= (LinearLayout) itemView.findViewById(R.id.item_ll);
+            tv_city.setOnClickListener(this);
 
         }
+
+        @Override
+        public void onClick(View view) {
+
+            if(mItemOnClickListener!=null){
+                mItemOnClickListener.onClick(view,getAdapterPosition());
+            }
+        }
+    }
+
+
+    public interface  OnItemOnClickListener{
+
+        void onClick(View view,int position);
     }
 }
