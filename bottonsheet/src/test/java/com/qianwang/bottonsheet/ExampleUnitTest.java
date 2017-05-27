@@ -1,4 +1,4 @@
-package com.qianwang.bottomsheet;
+package com.qianwang.bottonsheet;
 
 import org.junit.Test;
 
