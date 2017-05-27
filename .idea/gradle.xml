@@ -18,6 +18,8 @@
             <option value="$PROJECT_DIR$/selectdeletedemo" />
             <option value="$PROJECT_DIR$/slideitemdelete" />
             <option value="$PROJECT_DIR$/stereoview" />
+            <option value="$PROJECT_DIR$/webviewandjs" />
+            <option value="$PROJECT_DIR$/wechatfriends" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

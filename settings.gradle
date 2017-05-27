@@ -1,1 +1,1 @@
-include ':app', ':darkthem', ':nightmodel', ':meituanmeun', ':parallax_viewpager', ':slideitemdelete', ':selectdeletedemo', ':stereoview', ':citylistmenu'
+include ':app', ':darkthem', ':nightmodel', ':meituanmeun', ':parallax_viewpager', ':slideitemdelete', ':selectdeletedemo', ':stereoview', ':citylistmenu', ':webviewandjs', ':wechatfriends', ':bottomsheet'
